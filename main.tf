@@ -5,35 +5,19 @@ resource "aws_vpc" "terraform_vpc" {
   tags = {
     Name = "clc15-tf-vpc"
     cc = "123456"
-    Owner = "DevOps10"
+    Owner = "DevOp"
     
   }
 }
 
-# Correcao primeira issue
-resource "aws_flow_log" "example" {
-  log_destination      = "clc15-darlanteixeira-terraform"
-  log_destination_type = "s3"
-  traffic_type         = "ALL"
-  vpc_id               = aws_vpc.terraform_vpc.id
-}
-
-# Correcao segunda issue
-resource "aws_default_security_group" "default" {
-  vpc_id = aws_vpc.terraform_vpc.id
-  
-  tags = {
-    Name = "my-iac-sg"
-  }
-}
-
 resource "aws_subnet" "subnet_public_1a" {
-  vpc_id           = aws_vpc.terraform_vpc.id
-  cidr_block       = "10.0.1.0/24"
-  availability_zone = "us-east-1a"
+vpc_id  = aws_vpc.terraform_vpc.id
+cidr_block  = "10.0.1.0/24"
+availability_zone = "us-east-1a"
 
-  tags = {
-    Name = "public-tf-subnet-1a"
+tags  - {
+  name  = "public-tf-subnet-1a"
+  
   }
 }
 
